@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F5F6FA"
+             x:Class="AppTarefa.Telas.Listar">
+    <ContentPage.Content>
+        <Grid RowDefinitions="1*,5*" RowSpacing="0">
+
+            <Grid ColumnDefinitions="2*,1*">
+                <Label Margin="20,40,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Segunda-Feira" FontFamily="MontserratRegular" FontSize="20" TextColor="Black"/>
+                            <!--Quebra Linha-->
+                            <Span Text="&#10;"/>
+                            <Span Text="3 Tarefas" FontFamily="MontserratThin" FontSize="14" TextColor="#888888"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+                <Frame BackgroundColor="#4043C9"
+                       Margin="0,20,20,0"
+                       Grid.Column="1"
+                       CornerRadius="20">
+                    
+                    <Label TextColor="White"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="9" FontFamily="MontserratMedium" FontSize="20"/>
+                                <!--Quebra Linha-->
+                                <Span Text="&#10;"/>
+                                <Span Text="Fev"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    
+                </Frame>
+            </Grid>
+
+            <Frame Grid.Row="1"
+                   TranslationY="30"
+                   CornerRadius="30"
+                   HasShadow="False">
+
+                <Grid>                   
+
+                    <CollectionView x:Name="CVListaDeTarefas">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem BackgroundColor="#EE6C4D" Text="Excluir" Invoked="BtnExcluir" CommandParameter="{Binding .}"/>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Grid ColumnDefinitions="1*,4*">
+                                        <CheckBox />
+
+                                        <Label Grid.Column="1">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="BtnVisualizar" CommandParameter="{Binding .}"/>
+                                            </Label.GestureRecognizers>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Nome}"/>
+                                                    <Span Text="&#10;"/>
+                                                    <Span Text="{Binding HorarioInicial}"/>
+                                                    <Span Text=" - "/>
+                                                    <Span Text="{Binding HorarioFinal}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                    <Button Text="+" 
+                            Clicked="BtnCadastrar"
+                            TranslationY="-30"
+                            TextColor="White"
+                            HorizontalOptions="End"
+                            VerticalOptions="End"
+                            WidthRequest="75"
+                            HeightRequest="75"
+                            BackgroundColor="#4043C9"
+                            CornerRadius="50"
+                            FontSize="36"/>
+                </Grid>
+                
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
